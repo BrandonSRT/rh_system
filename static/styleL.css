@@ -1,0 +1,88 @@
+.contenedor_login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(224, 219, 219);
+    width: 100%;
+    min-height: 1085px; 
+}
+
+.login-box{ 
+    width: 25em;
+    min-height: 27em;
+    background: steelblue;
+    color: #fff;
+    padding:4.375em 1.875em; 
+    border-color: black;
+    border-width: 1;
+}
+
+.login-box h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 1.375rem;
+    color: white;
+}
+
+.login-box label{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+.login-box input{
+    width: 100%;
+    margin-bottom: 1.25em;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background:transparent;
+    outline: none;
+    height: 2.5em;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.login-box input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 2.5em;
+    background: black;
+    color: #fff;
+    font-size: 1.125rem;
+    border-radius: 1.25em;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 0.75rem;
+    line-height: 1.25em;
+    color: darkgrey;
+}
+
+.login-box a:hover{
+    color: #fff;
+}
+
+.login-box input[type="submit"]:hover{
+    background: #242109;
+}
+
+.showPasswordToggle{
+    cursor: pointer;
+    transition: all;
+}
+
+.showPasswordToggle:hover{
+    transform: scale(1.2);
+}
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+

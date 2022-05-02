@@ -1,0 +1,291 @@
+{% load static %}
+{% include "common/Layout.html" %}
+
+{% block content %}
+
+
+    <main>
+      <div class="container" style="max-width: 1240px;">
+        <div style="width: fit-content; float: right;">
+            {% include 'partials/_messages.html' %}
+        </div>
+        <br>
+        <h1 class="registerTitle">Registro de Candidato</h1>
+        <form class="needs-validation" novalidate action="{% url 'candidate' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 style="text-align: center; margin-top: 2%;">Datos Personales</h2>
+            <div class="row" id="form1">
+                
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="name">Nombre y apellidos<span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="name" name="Name" maxlength="20" required>
+                    </div>
+                    <label for="">Sexo</label>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="Femenino" value="Femenino" name="GenderOption"checked="checked" >
+                        <label class="form-check-label" for="Femenino">F</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="Masculino" value="Masculino" name="GenderOption">
+                        <label class="form-check-label" for="Masculino">M</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="identification">Cédula de identidad:<span style="color: red; font-weight: bold;">&nbsp;*</span></label>
+                        <input class="form-control " type="text" id="identification" name="identification" maxlength="40" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profesional_code">Código profesional:</label>
+                        <input class="form-control " type="text" id="profesional_code" name="profesional_code" maxlength="40" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nationality">Nacionalidad:</label>
+                        <select class="custom-select " name="Nationality" id="Nationality" required>
+                            <option selected disabled value>** Favor Seleccionar **</option>
+                            {% for nationality in nationalities %}
+                            <option value="{{nationality.id}}">{{nationality.country_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Dirección Exacta:</label>
+                        <input class="form-control"   id="Direction" name="Direction">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Fecha de nacimiento:</label>
+                        <input class="form-control" id="birthday" type="date" name="birthday">
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="Phone">Teléfonos:</label>
+                            <input class="form-control " type="text" id="Phone" name="Phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input class="form-control " type="email" id="email" name="email"
+                             >
+                    </div>
+                    <div class="form-group">
+                        <label for="civil_status">Estado Civil:</label>
+                        <input class="form-control " type="text" id="civil_status" name="civil_status"
+                             required>
+                    </div>
+                    <div class="form-group">
+                        <label for="spouse">Nombre del Conyuge:</label>
+                        <input class="form-control " type="text" id="spouse" name="spouse"
+                             required>
+                    </div>
+                    <label for="children">Tiene Hijos</label>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="chilidrenyes" value="True" name="childrenOption" checked="checked">
+                        <label class="form-check-label" for="chilidrenyes">Sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="childrenno" value="False" name="childrenOption">
+                        <label class="form-check-label" for="childrenno">No</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Cuántos:</label>
+                        <input class="form-control" type="text" id="quantity" name="quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="peopledependecy">Cuantas personas dependen de usted:</label>
+                        <input class="form-control " type="text" id="peopledependecy" name="peopledependecy" required>
+                    </div>  
+                    <div class="form-group">
+                        <label for="bloodtype">Tipo de sangre:</label>
+                        <input class="form-control " type="text" id="bloodtype" name="bloodtype" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="license">Tipo de licencia:</label>
+                        <input class="form-control " type="text" id="license" name="license" required>
+                    </div> 
+                    <label for="">Vehículo</label>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="vehicleyes" value="True" name="vehicleOption" checked="checked" >
+                        <label class="form-check-label" for="vehicleyes">Sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="vehicleno" value="False" name="vehicleOption">
+                        <label class="form-check-label" for="vehicleno">No</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle_description">¿Cuenta con medio de transporte? Indique cual</label>
+                        <input class="form-control " type="text" id="vehicle_description" name="vehicle_description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hogar_employee">¿Conoce algún trabajador del Hogar? Anote el nombre</label>
+                        <textarea  id="" cols="60" rows="5" style="vertical-align: top;" name="hogar_employee" ></textarea>
+                    </div> 
+                </div>
+                <br>
+                <div class="col-6">
+                    <div>
+                        <div class="clientCol2" style="text-align: center;">
+                            <img src="{% static '/img/defaultuser.jpg' %}" id="UserPhoto" alt="default-user" width="260"
+                                height="280">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="clientCol2">
+                                <input type="file" id="UserUploader" name="File">
+                            </div>
+                        </div>
+                    </div>
+    
+
+                    <div class="form-group">
+                        <label for="profession">Profesión:</label>
+                        <input class="form-control " type="text" id="profession" name="profession" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job">Puesto que solicita:</label>
+                        <select class="custom-select " name="job" id="job">
+                            <option value="ZZ">** Favor Seleccionar **</option>
+                            {% for job in jobs %}
+                            <option value="{{job.id}}">{{job.job_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salarypretension">Pretensión Salarial:</label>
+                        <input class="form-control " type="text" id="salarypretension" name="salarypretension" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha:</label>
+                        <input class="form-control " type="date" id="date" name="date" value="{{today}}" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studies">Último nivel de estudios alcanzado:</label>
+                        <input class="form-control " type="text" id="studies" name="studies" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studies_other">Ingrese otro tipo de estudios que posea:</label>
+                        <input class="form-control " type="text" id="studies_other" name="studies_other" required>
+                    </div>
+                    
+                    <label for="">Padece Actualmente de alguna enfermedad</label>
+                    <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input " type="radio" id="illnessyes" value="True" name="illnessOption" checked="checked" >
+                        <label class="form-check-label" for="illnessyes">Sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="illnessno" value="False" name="illnessOption">
+                        <label class="form-check-label" for="illnessno">No</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="illness">Cuál:</label>
+                        <input class="form-control" type="text" id="illness" name="illness" required>
+                    </div>
+                    <label for="">Posee carné de manipulación de alimentos</label>
+                    <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input " type="radio" id="handlingyes" value="True" name="handling" checked="checked" >
+                        <label class="form-check-label" for="handlingyes">Sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="handlingno" value="False" name="handling">
+                        <label class="form-check-label" for="handlingno">No</label>
+                    </div>
+                    <label for="name">Anote el nombre de 2 personas que puedan dar referencias laborales.</label>
+                    <div class="form-group">
+                        <label for="person_name1">Nombre y apellidos (Persona 1) <span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="person_name1" name="person_name1" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="person_phone1">Teléfono (Persona 1)<span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="person_phone1" name="person_phone1" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="person_name2">Nombre y apellidos (Persona 2)<span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="person_name2" name="person_name2" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="person_phone2">Teléfono (Persona 2)<span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="person_phone2" name="person_phone2" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="clientCol2">
+                            <label for="cv">Agregar cv <b>*Máximo 2 hojas*</b> :</label>
+                            </br>
+                            <input type="file" id="cv" name="cv">
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <h2 style="text-align: center;">Experiencia Laboral - último empleo</h2>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="companyname">Nombre de la empresa:</label>
+                        <input class="form-control " type="text" id="companyname" name="companyname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone2">Teléfono:</label>
+                        <input class="form-control " type="text" id="phone2" name="phone2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job2">Puesto que ocupaba:</label>
+                        <input class="form-control " type="text" id="job2" name="job2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="finalsalary">Salario Final:</label>
+                        <input class="form-control " type="text" id="finalsalary" name="finalsalary" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entrydate">Fecha de ingreso:</label>
+                        <input class="form-control " type="date" id="entrydate" name="entrydate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="departuredate">Fecha de salida:</label>
+                        <input class="form-control " type="date" id="departuredate" name="departuredate" required>
+                    </div>
+                </div>
+                <div class="col-6">
+ 
+                    <div class="form-group">
+                        <label for="bossname">Nombre de Jefe directo:</label>
+                        <input class="form-control " type="text" id="bossname" name="bossname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Motivo de Salida:</label>
+                        <input class="form-control " type="text" id="reason" name="reason" required>
+                    </div>
+                    <label for="">Tiene algún familiar, amigo o conocido trabajando en esta empresa:</label>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="familyyes" value="True" name="familyOption" checked="checked" >
+                        <label class="form-check-label" for="familyyes">Sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="familyno" value="False" name="familyOption">
+                        <label class="form-check-label" for="familyno">No</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="who">Quién (ES):</label>
+                        <input class="form-control " type="text" id="who" name="who" required>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <input type="submit" class="btn btn-primary" value="Registrar">
+            </div>
+
+            <div>
+                <p>A través de esta firma certifico que mis respuestas plasmadas en esta solicitud son verdaderas y completas y 
+                    tengo conocimiento que el proveer datos falsos, en caso de ser contratado será causal de despido sin 
+                    responsabilidad patronal. Además acepto que todos los documentos adjuntos a esta solicitud pasarán a ser
+                     propiedad de la Asociación Hogar Manos de Jesús.
+                </p>
+            </div>
+            
+        </form>
+    </div>
+
+      
+    </main>
+
+    <footer>&copy; Flexworld Inc - 2015</footer>
+{% endblock %}

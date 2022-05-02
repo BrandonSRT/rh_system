@@ -1,0 +1,118 @@
+{% load static %}
+{% include "common/Layout.html" %}
+
+{% block content %}
+{% load adminapp_extras %}
+
+<main>
+    <div class="container" style="max-width: 1400px;">
+        <div style="width: fit-content; float: right;">
+            {% include 'partials/_messages.html' %}
+        </div>
+        <div class="main_table" style="margin-top: 5%;">
+
+            <div class="main_search_filter"style="margin-bottom: 5%">
+
+                <form class="form-inline needs-validation" novalidate action="{% url 'search' %}" method="GET" enctype="multipart/form-data">
+
+
+                    <input class="form-control mr-sm-2" type="search" name="q" id="SearchBox" placeholder="Buscar"
+                        aria-label="Search" value="{{query}}">
+                    <button class="btn btn-primary my-2 my-sm-0" style="background-color: steelblue;" type="submit">Buscar</button>
+
+
+                    <div class="form-group " style="margin-left: 3%;"> 
+                        <select class="custom-select " name="job" id="job">
+                            <option value="">Filtrar por puesto</option>
+                            {% for job in jobs %}
+                            <option value="{{job.id}}">{{job.job_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Identificación</th>
+                        <th scope="col">Nacionalidad</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Correo electrónico</th>
+                        <th scope="col">Puesto</th>
+                        <th scope="col">Acción</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if candidates %}
+                    {% for candidate in candidates %}
+                    <tr>
+                        <th scope="row">{{candidate.name}}</th>
+                        <td>{{candidate.identification}}</td>
+                        <td>{{candidate.nationality.country_name}}</td>
+                        <td>{{candidate.birth_date}}</td>
+                        <td>{{candidate.candidate_phone}}</td>
+                        <td>{{candidate.mail}}</td>
+                        <td>{{candidate.job.job_name}}</td>
+                        <td>
+                            <a href="{% url 'candidate_edit' pk=candidate.id %}" style="color: steelblue;"><i class="far fa-eye table_i"></i></a>
+                            <a href="{% url 'form_attached' pk=candidate.id %}" style="color: steelblue;"><i class="fas fa-file table_i"></i></a>
+                            <a href="{% url 'candidate_delete' candidate.id %}" style="color: steelblue;"><i class="fas fa-trash table_i"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+            
+                    {% endif %}
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+
+        <div>
+            <span class="step_links">
+                <ul class="pagination">
+                    {% if candidate_page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link line_decoration" href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; Primera</a></li>
+                    <li class="page-item"><a class="page-link line_decoration" href="{% my_url candidate_page_obj.previous_page_number 'page' request.GET.urlencode %}">Anterior</a></li>
+                    {% endif %}
+
+                    <li class="page-item">
+                        <span class="current page-link" style="color: white;">
+
+                            Página {{candidate_page_obj.number}} de {{candidate_page_obj.paginator.num_pages}}.
+
+                        </span>
+                    </li>
+
+                    {% if candidate_page_obj.has_next %}
+                    <li class="page-item"><a class="page-link line_decoration" href="{% my_url candidate_page_obj.next_page_number 'page' request.GET.urlencode %}">Siguiente</a>
+                    </li>
+                    <li class="page-item"><a class="page-link line_decoration" href="{% my_url candidate_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Última&raquo;</a></li>
+                    {% endif %}
+                </ul>
+                
+
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+</main>
+
+
+{% endblock %}

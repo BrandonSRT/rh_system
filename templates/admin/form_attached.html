@@ -1,0 +1,277 @@
+{% load static %}
+{% include "common/Layout.html" %}
+
+{% block content %}
+
+
+    <main>
+      <div class="container" style="max-width: 1240px;">
+        <br>
+        <h1 class="registerTitle">Información de Recursos Humanos</h1>
+        <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row" id="form1">
+                
+                <div class="col-8">
+                    <div class="form-group ">
+                        <label for="refnum">Número de referencia: <span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="refnum" name="refnum" value="{{hr_form.ref_num}}" readonly required>
+                    </div>
+                    <div class="form-group ">
+                        <label for="name">Nombre de candidato: <span style="color: red; font-weight: bold;">*</span></label>
+                        <input class="form-control " type="text" id="name" name="Name" value="{{hr_form.name}}" maxlength="20" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interview_date">Fecha de la entrevista:</label>
+                        <input class="form-control " type="date" id="interview_date" name="interview_date" value='{{hr_form.interview_date|date:"Y-m-d"}}' readonly required>
+                    </div>
+                    <div class="form-group ">
+                        <label for="interviewers">Personas que entrevistaron:<span style="color: red; font-weight: bold;">&nbsp;*</span></label>
+                        <textarea  id="" cols="60" rows="5" style="vertical-align: top;" name="interviewers" value>{{hr_form.interviewers}}</textarea>
+                    </div>
+                    <label for="">Entrevistado</label>
+                    {% if hr_form.interviewed %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="interviewedyes" value="True" name="interviewed"checked="checked" >
+                        <label class="form-check-label" for="interviewedyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="interviewedno" value="False" name="interviewed">
+                        <label class="form-check-label" for="interviewedno">No</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="interviewedyes" value="True" name="interviewed" >
+                        <label class="form-check-label" for="interviewedyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="interviewedno" value="False" name="interviewed" checked="checked">
+                        <label class="form-check-label" for="interviewedno">No</label>
+                    </div>
+                    {% endif %}
+                    <label for="">| Resultado</label>
+                    {% if hr_form.result1 %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result1yes" value="True" name="result1"checked="checked" >
+                        <label class="form-check-label" for="result1yes">Seleccionado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result1no" value="False" name="result1">
+                        <label class="form-check-label" for="result1no">No seleccionado</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result1yes" value="True" name="result1" >
+                        <label class="form-check-label" for="result1yes">Seleccionado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result1no" value="False" name="result1" checked="checked">
+                        <label class="form-check-label" for="result1no">No seleccionado</label>
+                    </div>
+                    {% endif %}
+                    <div class="form-group ">
+                        <label for="observaciones1">Observaciones:<span style="color: red; font-weight: bold;">&nbsp;*</span></label>
+                        <input class="form-control " type="text" id="observaciones1" name="observaciones1" maxlength="250" value="{{hr_form.observaciones1}}" required>
+                    </div>
+                    <label for="">Valoración terapia física</label>
+                    {% if hr_form.terapy %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="terapyyes" value="True" name="terapy"checked="checked" >
+                        <label class="form-check-label" for="terapyyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="terapyno" value="False" name="terapy">
+                        <label class="form-check-label" for="terapyno">No</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="terapyyes" value="True" name="terapy" >
+                        <label class="form-check-label" for="terapyyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="terapyno" value="False" name="terapy" checked="checked">
+                        <label class="form-check-label" for="terapyno">No</label>
+                    </div>
+                    {% endif %}
+                    <label for="">| Resultado</label>
+                    {% if hr_form.result2 %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result2yes" value="True" name="result2"checked="checked" >
+                        <label class="form-check-label" for="result2yes">Seleccionado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result2no" value="False" name="result2">
+                        <label class="form-check-label" for="result2no">No seleccionado</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result2yes" value="True" name="result2">
+                        <label class="form-check-label" for="result2yes">Seleccionado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result2no" value="False" name="result2" checked="checked">
+                        <label class="form-check-label" for="result2no">No seleccionado</label>
+                    </div>
+                    {% endif %}
+                    <div class="form-group ">
+                        <label for="observaciones2">Observaciones:<span style="color: red; font-weight: bold;">&nbsp;*</span></label>
+                        <input class="form-control " type="text" id="observaciones2" name="observaciones2" maxlength="250" value="{{hr_form.observaciones2}}" required>
+                    </div>
+                    <label for="">Valoración médica</label>
+                    {% if hr_form.medicalval %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="medicalvalyes" value="True" name="medicalval"checked="checked" >
+                        <label class="form-check-label" for="medicalvalyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="medicalvalno" value="False" name="medicalval">
+                        <label class="form-check-label" for="medicalvalno">No</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="medicalvalyes" value="True" name="medicalval" >
+                        <label class="form-check-label" for="medicalvalyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="medicalvalno" value="False" name="medicalval" checked="checked">
+                        <label class="form-check-label" for="medicalvalno">No</label>
+                    </div>
+                    {% endif %}
+                    <label for="">| Resultado</label>
+                    {% if hr_form.result3 %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result3yes" value="True" name="result3"checked="checked" >
+                        <label class="form-check-label" for="result3yes">Seleccionado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result3no" value="Masculino" name="result3">
+                        <label class="form-check-label" for="result3no">No seleccionado</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result3yes" value="True" name="result3">
+                        <label class="form-check-label" for="result3yes">Seleccionado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result3no" value="Masculino" name="result3" checked="checked">
+                        <label class="form-check-label" for="result3no">No seleccionado</label>
+                    </div>
+                    {% endif %}
+                    <div class="form-group ">
+                        <label for="observaciones3">Observaciones:<span style="color: red; font-weight: bold;">&nbsp;*</span></label>
+                        <input class="form-control " type="text" id="observaciones3" name="observaciones3" maxlength="250" value="{{hr_form.observaciones3}}" required>
+                    </div>
+                    <label for="">Pruebas psicométricas</label>
+                    {% if hr_form.psychometric %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="psychometricyes" value="True" name="psychometric"checked="checked" >
+                        <label class="form-check-label" for="psychometricyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="psychometricno" value="False" name="psychometric">
+                        <label class="form-check-label" for="psychometricno">No</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="psychometricyes" value="True" name="psychometric">
+                        <label class="form-check-label" for="psychometricyes">sí</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="psychometricno" value="False" name="psychometric" checked="checked" >
+                        <label class="form-check-label" for="psychometricno">No</label>
+                    </div>
+                    {% endif %}
+                    <label for="">| Resultado</label>
+                    {% if hr_form.result4 == "unfavorable" %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result4D" value="unfavorable" name="result4"checked="checked">
+                        <label class="form-check-label" for="result4D">Desfavorable</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4M" value="moderate" name="result4">
+                        <label class="form-check-label" for="result4M">Moderado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4F" value="favorable" name="result4">
+                        <label class="form-check-label" for="result4F">Favorable</label>
+                    </div>
+                    {% elif hr_form.result4 == "moderate" %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result4D" value="unfavorable" name="result4">
+                        <label class="form-check-label" for="result4D">Desfavorable</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4M" value="moderate" name="result4" checked="checked">
+                        <label class="form-check-label" for="result4M">Moderado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4F" value="favorable" name="result4">
+                        <label class="form-check-label" for="result4F">Favorable</label>
+                    </div>
+                    {% elif hr_form.result4 == "favorable" %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result4D" value="unfavorable" name="result4">
+                        <label class="form-check-label" for="result4D">Desfavorable</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4M" value="moderate" name="result4">
+                        <label class="form-check-label" for="result4M">Moderado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4F" value="favorable" name="result4" checked="checked">
+                        <label class="form-check-label" for="result4F">Favorable</label>
+                    </div>
+                    {% else %}
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input " type="radio" id="result4D" value="unfavorable" name="result4">
+                        <label class="form-check-label" for="result4D">Desfavorable</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4M" value="moderate" name="result4">
+                        <label class="form-check-label" for="result4M">Moderado</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" id="result4F" value="favorable" name="result4">
+                        <label class="form-check-label" for="result4F">Favorable</label>
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group ">
+                            <label for="observaciones4">Observaciones:</label>
+                            <textarea  id="" cols="60" rows="5" style="vertical-align: top;" name="observaciones4" value>{{hr_form.observaciones4}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        {% if hr_form.test_file %}
+                        <div class="clientCol2">
+                            <label for="test_file">Ver resultados de las pruebas:</label>
+                            </br>
+                            <input type="file" id="test_file" name="test_file" value="">
+                            <a href="{{hr_form.test_file.url}}">{{hr_form.test_file}}</a>
+                        </div>
+                        {% else %}
+                        <div class="clientCol2">
+                            <label for="test_file">Ver resultados de las pruebas:</label>
+                            </br>
+                            <input type="file" id="test_file" name="test_file">
+                        </div>
+                        {% endif %}
+                        <!-- <div>
+                            <label for="Phone">Ver resultados de las pruebas:</label>
+                            <input type="file" id="UserUploader" name="File">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <input type="submit" class="btn btn-primary" value="Guardar Información">
+            </div>
+            
+        </form>
+    </div>
+
+      
+    </main>
+
+    <footer>&copy; Flexworld Inc - 2015</footer>
+{% endblock %}

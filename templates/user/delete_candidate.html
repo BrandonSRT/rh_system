@@ -1,0 +1,38 @@
+{% extends "common/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="card mt-5" style="width: auto;">
+            <div class="card-body">
+                <h3 class="card-title">Eliminar</h3>
+                <hr>
+                <p class="card-text h5 mt-4" style="text-align: center;">¿Esta seguro que desea eliminar este registro?
+                </p>
+
+                <form method="POST" action="">
+
+                    {% csrf_token %}
+
+
+                    <div class="mt-5" style="display:flex; justify-content: center;">
+                        <input class="btn btn-danger" type="submit" value="Aceptar">
+
+                        <a href="{% url 'search' %}">
+                            <div class="btn btn_primary">Cancel</div>
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

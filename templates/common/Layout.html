@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static '/stylef.css' %}" />
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+</head>
+{% load adminapp_extras %}
+
+<body>
+    <div style="margin: 0.5%;display: flex; justify-content: center;">
+        <img src="{% static '/img/Hmj.png' %}"  alt="HMJ_Icon" width="85" height="85">        
+        <h1 style="margin-top: 0.8%; margin-left: 0.5%; align-content: center;">Asociación Hogar Manos de Jesús Pro Atención al Anciano Abandonado</h1>
+        {% if request.user|has_group:"admin"%}
+        <a style="height: 50%;margin-top: 1%;margin-left: 1%;" href="{% url 'logout' %}" class="color-danger text-center btn btn-danger"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
+        {%endif%}
+
+    </div>
+    
+    <div id="toggle-menu">Menu</div>
+
+    {% if request.user|has_group:"admin"%}
+    <nav>
+        <ul class="menu">
+           <li><a class="navlinks" href="{% url 'search' %}">Buscar Candidato</a></li>
+           <li><a class="navlinks" href="{% url 'candidate' %}">Registrar Candidato</a></li>
+           <li><a class="navlinks" href="{% url 'register_user' %}">Registrar Usuario</a></li>
+        </ul>
+    </nav>
+    {% else %}
+    <nav>
+        <ul class="menu">
+            <li><a class="navlinks" >.</a></li>
+        </ul>
+    </nav>
+    {%endif%}
+
+    {% block content %}
+
+    {% endblock %}
+    
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="{% static '/scripts.js' %}"></script>
+    <script src="{% static '/js/boostrapvals.js' %}"></script>
+    <script src="{% static '/js/candidateRegister.js' %}"></script>
+
+</body>
+
+</html>

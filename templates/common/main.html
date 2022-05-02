@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static '/stylef.css' %}" />
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="{% static '/styleL.css' %}">
+
+</head>
+<body>
+    <div class="contenedor_login">
+
+        <div class="login-box" style="margin-bottom: 15%;">
+      
+          <h1>Inicio de sesión</h1>
+      
+          <form class="needs-validation" novalidate action="{% url 'Login' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+      
+      
+      
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" autocomplete="off" required>
+      
+            <div class="invalid-feedback invalid-feedback" style="display:none;">
+      
+            </div>
+      
+            <div class="valid-feedback valid-feedback" style="display:none;">
+      
+            </div>
+      
+      
+      
+            <p class="text-sm text-success usernameSuccessOutput"></p>
+      
+      
+            <label for="password">Contraseña</label>
+            <input type="password" name="password"  id="password" required>
+            <small class="float-right showPasswordToggle" onclick="handleToggleInput()" style="margin-top: -10px">Mostrar</small>
+      
+            <div class="form-group">
+      
+              <input type="hidden" id="form_tipo" name="form_login" value="100">
+      
+      
+      
+            </div>
+      
+      
+            <!-- <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#login_modal" value="Inicio"> -->
+            <input type="submit" id="btn_login" value="Inicio">
+      
+            <!-- <a href="#">Olvido su contraseña?</a><br> -->
+      
+          </form>
+      
+        </div>
+      
+        <div class="modal" tabindex="-1" role="dialog" id="login_modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Registro de Chofer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    
+    </body>
+
+    <script src="{% static '/js/login.js' %}"></script>
+
+</html>

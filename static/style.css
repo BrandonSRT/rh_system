@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.menu{
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background: steelblue;
+    display: flex;
+
+}
+
+li{
+    flex:auto; /*el ancho se distributye uniformemente*/
+    border-right: 1px solid rgba(0, 0, 0, .2);
+    text-align: center;
+}
+
+li:last-child{
+    border-right: none;
+}
+/* 
+a{
+    color: #eee;
+    text-decoration: none;
+    line-height: 3;
+    display: block;
+}
+ */
+
+.navlinks{
+    color: #eee;
+    text-decoration: none;
+    line-height: 3;
+    display: block;
+}
+
+a:hover{
+    background: rgba(0, 0, 0, .2);
+}
+
+#toggle-menu{
+    background: rgb(56, 119, 172) 5%;
+    line-height: 2.5;
+    color: #fff;
+    padding-left: 1em;
+    font-size: .9em;
+    cursor: pointer;
+    display: none;
+}
+
+
+@media screen and (max-width: 768px){
+    .menu{
+    display: flex;
+    flex-direction: column;
+    
+    }
+
+    li{
+        text-align: left;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+
+    li:last-child{
+        border: none;
+    }
+
+    a{
+        padding-left: 1em;
+        font-weight: bold;
+        font-size: .9em;
+    }
+
+    #toggle-menu{
+        display: block;
+    }
+
+
+}
+
+
+span.page-link{
+    background: steelblue!important ;
+    color: white;
+}
+a.page-link{
+    background: steelblue!important ;
+    color: white;
+   
+}
+.line_decoration:hover{
+    text-decoration: overline;
+    color: white;
+}
+
+.page-item.active .page-link{
+    border-color: white;
+    text-decoration: overline;
+
+}
+a.page-link:hover{
+    background: steelblue!important;
+    color: white;
+}
